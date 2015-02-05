@@ -6,7 +6,7 @@ function geo()
     function showLocation(position)
     {
 	var lat= position.coords.latitude;
-	var long = position.coords.longitude;
+	var longi = position.coords.longitude;
     }
     function errorHandler(error)
     {
