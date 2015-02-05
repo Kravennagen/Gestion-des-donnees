@@ -23,29 +23,33 @@ function geo()
 	alert('Votre navigateur ne prend malheureusement pas en charge la géolocalisation.');
     }
 }
-var adresse = "paris place des fetes"
+var adresse = "france "
 var geocoder = new google.maps.Geocoder();
 geocoder.geocode({'address': adresse}, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 		var loc = results[0].geometry.location;
-		lat = loc.k ;
+		lat = loc.k;
 		longi = loc.D;
-		    map.setCenter(loc);
-		    //map.setZoom(150);
-		    var marker = new google.maps.Marker({ map: map, position: loc});
+		 map.setCenter(loc);
+		   // var marker = new google.maps.Marker({ map: map, position: loc});
 		    if (results[0].geometry.viewport) 
 			map.fitBounds(results[0].geometry.viewport);
 		}
 		});
-   function poup (){
-   var getout = function(type){
-   $.ajax({
-url : "192.168.211.44/lol/database/api.php",
-type : "GET",
-data : 'type='+type+'&lat='+lat+"&long="+longi,
-success:function(data){alert('lol')},
-error:function(msg){ alert('fdssdf')}
-})}}
+
+function poup (){
+    var getout = function(type){
+	$.ajax({
+	    url : "api.php",
+	    type : "GET",
+	    ContentType: 'application/json',
+	    data : 'type='+'gas'+'&lat='+lat+"&long="+longi+'&rad=0.1',
+	    success:function(data){console.log(data);},
+	    error:function(jqxhr, status, msg){console.log(msg); console.log(status)}
+	})
+    }
+    getout();
+}
 function textbout()
 {
 	if ($('#gas').val() == 1)
