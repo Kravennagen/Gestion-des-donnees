@@ -23,11 +23,10 @@ else
 	alert('Votre navigateur ne prend malheureusement pas en charge la géolocalisation.');
 }
 }
-var adresse = "win";
+var adresse = "vienne"
 var geocoder = new google.maps.Geocoder();
 geocoder.geocode({'address': adresse}, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
-		console.log(results);
 		var loc = results[0].geometry.location;
 		lat = loc.k ;
 		longi = loc.D;
@@ -38,9 +37,9 @@ geocoder.geocode({'address': adresse}, function (results, status) {
    function poup (){
    var getout = function(type){
    $.ajax({
-url : "192.168.211.44/lol/database/test.php",
+url : "192.168.211.44/lol/database/api.php",
 type : "GET",
-data: 'type='+type+'&lat='+lat"&long="+long,
+data : 'type='+type+'&lat='+lat+"&long="+longi,
 success:function(data){alert('lol')},
 error:function(msg){ alert('fdssdf')}
 })}}
