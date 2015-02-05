@@ -23,7 +23,7 @@ else
 	alert('Votre navigateur ne prend malheureusement pas en charge la géolocalisation.');
 }
 }
-var adresse = "Chione";
+var adresse = "win";
 var geocoder = new google.maps.Geocoder();
 geocoder.geocode({'address': adresse}, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
@@ -33,21 +33,17 @@ geocoder.geocode({'address': adresse}, function (results, status) {
 		longi = loc.D;
 		map.setCenter(loc);
 		var marker = new google.maps.Marker({ map: map, position: loc});
-		    var marker = new google.maps.Marker({ map: map, position: loc});
 		}
 		});
-
-/*
    function poup (){
    var getout = function(type){
    $.ajax({
-url : "192.168.211.44/lol/database/api.php",
+url : "192.168.211.44/lol/database/test.php",
 type : "GET",
 data: 'type='+type+'&lat='+lat"&long="+long,
 success:function(data){alert('lol')},
 error:function(msg){ alert('fdssdf')}
 })}}
- */
 function textbout()
 {
 	if ($('#gas').val() == 1)
