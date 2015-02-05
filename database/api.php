@@ -28,6 +28,6 @@ $shh = $dbh->prepare("$query $type $where");
 $shh->execute(array(':lat' => $lat, ':lng' => $long, ':rad' => $rad));
 /* var_dump($shh->errorInfo()); */
 /* var_dump($shh); */
-$result = $shh->fetchAll();
+$result = $shh->fetchAll(PDO::FETCH_ASSOC);
 echo json_encode($result);
 ?>
