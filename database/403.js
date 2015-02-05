@@ -3,35 +3,38 @@ var lat;
 var longi;
 function geo()
 { 
-function showLocation(position)
-{
-    var lat= position.coords.latitude;
-    var long = position.coords.longitude;
-}
-function errorHandler(error)
-{
+    function showLocation(position)
+    {
+	var lat= position.coords.latitude;
+	var long = position.coords.longitude;
+    }
+    function errorHandler(error)
+    {
 	console.log('Geolocation error : code '+ error.code +' - '+ error.message); 
 	alert('Une erreur est survenue durant la géolocalisation. Veuillez réessayer plus tard ou contacter le support.');
-}
-if(navigator.geolocation)
-{
-
+    }
+    if(navigator.geolocation)
+    {
+    
 	navigator.geolocation.getCurrentPosition(showLocation, errorHandler);
-}
-else
-{
+    }
+    else
+    {
 	alert('Votre navigateur ne prend malheureusement pas en charge la géolocalisation.');
+    }
 }
-}
-var adresse = "vienne"
+var adresse = "paris place des fetes"
 var geocoder = new google.maps.Geocoder();
 geocoder.geocode({'address': adresse}, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 		var loc = results[0].geometry.location;
 		lat = loc.k ;
 		longi = loc.D;
-		map.setCenter(loc);
-		var marker = new google.maps.Marker({ map: map, position: loc});
+		    map.setCenter(loc);
+		    //map.setZoom(150);
+		    var marker = new google.maps.Marker({ map: map, position: loc});
+		    if (results[0].geometry.viewport) 
+			map.fitBounds(results[0].geometry.viewport);
 		}
 		});
    function poup (){
@@ -72,11 +75,11 @@ $('refresh').click(function(){
 		})
 
 var map = new google.maps.Map(document.getElementById('map'), {
-zoom: 6,
-center: new google.maps.LatLng(47.4,1.6),
-mapTypeControl: true,
-mapTypeControlOptions: {
-style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+    zoom: 10,
+    center: new google.maps.LatLng(47.4,1.6),
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+	style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
 },
 navigationControl: true,
 navigationControlOptions: {
